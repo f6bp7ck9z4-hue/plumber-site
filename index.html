@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SwiftFlow Plumbing | Leeds Plumber</title>
+  <meta name="description" content="SwiftFlow Plumbing — Fast, friendly plumbers in Leeds. Same-day fixes, clear pricing, emergency call-outs. Call 07123 456 789 (demo)." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#101a2e;
+      --card:#0f1a30;
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.78);
+      --line:rgba(234,240,255,.12);
+      --accent:#55b6ff;
+      --accent2:#7cf0c8;
+      --warn:#ffd36b;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(85,182,255,.35), transparent 55%),
+        radial-gradient(900px 600px at 90% 0%, rgba(124,240,200,.22), transparent 55%),
+        radial-gradient(900px 800px at 40% 120%, rgba(255,211,107,.12), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1040px;margin:0 auto;padding:22px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:14px 16px;border:1px solid var(--line);
+      background:rgba(16,26,46,.72);
+      backdrop-filter: blur(10px);
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+      position: sticky; top: 14px; z-index: 10;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:40px;height:40px;border-radius:14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display:grid;place-items:center;
+      box-shadow: 0 10px 30px rgba(85,182,255,.22);
+      flex:0 0 auto;
+    }
+    .logo svg{filter: drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+    .brand h1{font-size:16px;margin:0}
+    .brand p{margin:0;color:var(--muted);font-size:12px}
+    nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .pill{
+      padding:10px 12px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(15,26,48,.65);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .btn{
+      padding:11px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(85,182,255,.95), rgba(124,240,200,.92));
+      color:#061022;font-weight:800;font-size:13px;
+      box-shadow: 0 16px 40px rgba(85,182,255,.18);
+      display:inline-flex;gap:10px;align-items:center;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0px)}
+    .hero{
+      margin-top:18px;
+      padding:34px 18px;
+      border-radius: calc(var(--radius) + 10px);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(16,26,46,.78), rgba(16,26,46,.55));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-80px -120px auto auto;
+      width:380px;height:380px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(85,182,255,.35), transparent 60%);
+      filter: blur(1px);
+      transform: rotate(18deg);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+      position:relative; z-index:1;
+    }
+    .kicker{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(15,26,48,.55);
+      color:var(--muted);
+      font-size:13px;
+      width:max-content;
+    }
+    .dot{width:9px;height:9px;border-radius:99px;background:var(--accent2);box-shadow:0 0 0 6px rgba(124,240,200,.12)}
+    .hero h2{font-size:40px;line-height:1.05;margin:14px 0 10px}
+    .hero h2 span{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero .sub{margin:0;color:var(--muted);font-size:16px;max-width:52ch}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .badge{
+      padding:8px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(15,26,48,.55);
+      color:rgba(234,240,255,.86);
+      font-size:13px;
+    }
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+    .ghost{
+      padding:11px 14px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(15,26,48,.55);
+      color:rgba(234,240,255,.9);
+      font-weight:700;font-size:13px;
+    }
+    .sideCard{
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(15,26,48,.62);
+      padding:16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .sideCard h3{margin:0;font-size:16px}
+    .sideCard p{margin:0;color:var(--muted);font-size:13px}
+    .callBox{
+      margin-top:auto;
+      border-radius: 14px;
+      padding:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(85,182,255,.15), rgba(124,240,200,.12));
+    }
+    .phone{
+      font-size:22px;font-weight:900;letter-spacing:.2px;
+      display:flex;align-items:center;gap:10px;margin:0 0 6px;
+    }
+    .tiny{font-size:12px;color:var(--muted);margin:0}
+    section{margin-top:16px}
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .card{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(16,26,46,.55);
+      padding:16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+    }
+    .card h3{margin:0 0 10px;font-size:16px}
+    ul{margin:0;padding-left:18px;color:rgba(234,240,255,.9)}
+    li{margin:8px 0}
+    .muted{color:var(--muted)}
+    .reviews{
+      grid-column: span 12;
+      display:grid; gap:12px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .review{
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(15,26,48,.58);
+      padding:14px;
+    }
+    .stars{color:var(--warn);letter-spacing:1px;font-size:14px}
+    .who{margin-top:8px;font-weight:800;font-size:13px}
+    .foot{
+      margin-top:18px;
+      border-top:1px solid var(--line);
+      padding:14px 0 10px;
+      display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;
+      color:var(--muted);font-size:12px;
+    }
+    .note{opacity:.75}
+    @media (max-width: 880px){
+      .grid{grid-template-columns:1fr}
+      .hero h2{font-size:34px}
+      .card{grid-column: span 12}
+      .reviews{grid-template-columns:1fr}
+      header{position:static}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M7 7c0-2.2 1.8-4 4-4s4 1.8 4 4v6.2c0 2.8-2.2 5-5 5S5 16.8 5 14V9" stroke="#061022" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M19 10c0-1.7 1.3-3 3-3" stroke="#061022" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1>SwiftFlow Plumbing</h1>
+          <p>Leeds • Same-day fixes • Demo site</p>
+        </div>
+      </div>
+
+      <nav>
+        <a class="pill" href="#services">Services</a>
+        <a class="pill" href="#why">Why us</a>
+        <a class="pill" href="#reviews">Reviews</a>
+        <a class="btn" href="tel:07123456789" aria-label="Call SwiftFlow Plumbing">
+          Call Now
+          <span style="opacity:.9">07123 456 789</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="grid">
+          <div>
+            <div class="kicker"><span class="dot"></span> Local, fast, and tidy — Leeds plumber</div>
+            <h2>Fast, Friendly Plumber in <span>Leeds</span> — Call Now</h2>
+            <p class="sub">Leaks, blocked drains, taps, emergencies. Clear prices, quick response, no stress.</p>
+
+            <div class="badges" aria-label="Top selling points">
+              <div class="badge">✅ Same-day fixes</div>
+              <div class="badge">✅ Clear pricing</div>
+              <div class="badge">✅ Fully insured</div>
+              <div class="badge">✅ 5★ local service</div>
+            </div>
+
+            <div class="ctaRow">
+              <a class="btn" href="tel:07123456789">Call 07123 456 789</a>
+              <a class="ghost" href="#services">See services</a>
+            </div>
+
+            <p class="tiny" style="margin-top:10px">Demo number. Replace with the real business details.</p>
+          </div>
+
+          <aside class="sideCard">
+            <h3>Emergency? We answer fast.</h3>
+            <p>Tell us what’s wrong and your postcode. We’ll give a quick time estimate.</p>
+
+            <div class="callBox">
+              <p class="phone">☎ 07123 456 789</p>
+              <p class="tiny">Open: Mon–Sat • 8am–6pm (demo)</p>
+            </div>
+
+            <p class="tiny note">This is a demonstration page layout for the “local service website” idea.</p>
+          </aside>
+        </div>
+      </div>
+
+      <section id="services">
+        <div class="cards">
+          <div class="card">
+            <h3>Services</h3>
+            <ul>
+              <li><strong>Leaks & burst pipes</strong> — quick isolation and repair</li>
+              <li><strong>Blocked drains</strong> — sinks, toilets, external drains</li>
+              <li><strong>Tap & toilet repairs</strong> — replacements and fixes</li>
+              <li><strong>Emergency call-outs</strong> — urgent problems handled fast</li>
+            </ul>
+          </div>
+
+          <div class="card" id="why">
+            <h3>Why choose SwiftFlow</h3>
+            <ul>
+              <li><strong>Local & reliable</strong> — Leeds-based</li>
+              <li><strong>Clean, tidy work</strong> — we respect your home</li>
+              <li><strong>Clear pricing</strong> — no weird surprises</li>
+              <li><strong>Insured</strong> — peace of mind</li>
+            </ul>
+            <p class="muted" style="margin-top:10px">Want a quote? Call or text a photo of the problem.</p>
+          </div>
+
+          <div class="card" style="grid-column: span 12;">
+            <h3>Fast quote in 30 seconds</h3>
+            <p class="muted" style="margin:0 0 12px">Call and tell us: what’s wrong + your postcode + when you’re free.</p>
+            <a class="btn" href="tel:07123456789">Call Now — 07123 456 789</a>
+          </div>
+
+          <div class="reviews" id="reviews">
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <div class="muted">“Showed up quickly and fixed the leak same day. Super tidy.”</div>
+              <div class="who">— Sarah, Leeds</div>
+            </div>
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <div class="muted">“Unblocked the drain fast and explained what caused it.”</div>
+              <div class="who">— Jamal, Headingley</div>
+            </div>
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <div class="muted">“Clear price, no hassle. Would use again.”</div>
+              <div class="who">— Priya, Chapel Allerton</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">
+        <div>© <span id="y"></span> SwiftFlow Plumbing (Demo)</div>
+        <div class="note">Phone: 07123 456 789 • Area: Leeds</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
